@@ -42,46 +42,48 @@ https://docs.aws.amazon.com/organizations/latest/userguide/tag-policy-cli.html
 https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_example-tag-policies.html
 https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/organizations.html#Organizations.Client.list_roots
 
-aws organizations disable-policy-type --policy-type 'TAG_POLICY' --root-id 'r-rlg9'
-aws organizations list-policies  --filter 'TAG_POLICY'
+```aws organizations disable-policy-type --policy-type 'TAG_POLICY' --root-id 'r-rlg9'```
+
+```aws organizations list-policies  --filter 'TAG_POLICY' ```
 
 Applicaion, Env, Buisness Unit
 
-{
-    "tags": {
-        "costcenter": { -- policy key 
-            "tag_key": {
-                "@@assign": "CostCenter", -- must be the same as policy key but this is case sensitive. @@assign – Overwrites any inherited policy settings with the specified settings
-                "@@operators_allowed_for_child_policies": ["@@none"] -- Tag policies that are attached lower in the organization tree (child policies) can't use value-setting operators to change the tag key
-            },
-            "tag_value": {
-                "@@assign": [ --if not specified a tag value for a tag key, any value (including no value at all) is considered compliant
-                    "100",
-                    "200"
-                ]
-            },
-            "enforced_for": { -- prevents any noncompliant tagging operations for services. You can't use a wildcard to specify all services or to specify a resource for all services.
-                "@@assign": [
-                    "secretsmanager:*"
-                ]
-            }
-        },
-        "Color": {
-            "tag_key": {
-                "@@operators_allowed_for_child_policies": [
-                    "@@none"
-                ],
-                "@@assign": "Color"
-            },
-            "tag_value": {
-                "@@operators_allowed_for_child_policies": [
-                    "@@none"
-                ],
-                "@@assign": [] -- any Color tags on resources in affected accounts are considered non-compliant.
+
+        {
+            "tags": {
+                "costcenter": { -- policy key 
+                    "tag_key": {
+                        "@@assign": "CostCenter", -- must be the same as policy key but this is case sensitive. @@assign – Overwrites any inherited policy settings with the specified settings
+                        "@@operators_allowed_for_child_policies": ["@@none"] -- Tag policies that are attached lower in the organization tree (child policies) can't use value-setting operators to change the tag key
+                    },
+                    "tag_value": {
+                        "@@assign": [ --if not specified a tag value for a tag key, any value (including no value at all) is considered compliant
+                            "100",
+                            "200"
+                        ]
+                    },
+                    "enforced_for": { -- prevents any noncompliant tagging operations for services. You can't use a wildcard to specify all services or to specify a resource for all services.
+                        "@@assign": [
+                            "secretsmanager:*"
+                        ]
+                    }
+                },
+                "Color": {
+                    "tag_key": {
+                        "@@operators_allowed_for_child_policies": [
+                            "@@none"
+                        ],
+                        "@@assign": "Color"
+                    },
+                    "tag_value": {
+                        "@@operators_allowed_for_child_policies": [
+                            "@@none"
+                        ],
+                        "@@assign": [] -- any Color tags on resources in affected accounts are considered non-compliant.
+                    }
+                }
             }
         }
-    }
-}
 
 
 *Config Rule*
