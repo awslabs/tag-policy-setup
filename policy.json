@@ -1,0 +1,34 @@
+{
+    "tags": {
+        "costcenter": { 
+            "tag_key": {
+                "@@assign": "CostCenter", 
+                "@@operators_allowed_for_child_policies": ["@@none"] 
+            },
+            "tag_value": {
+                "@@assign": [ 
+                    "200"
+                ]
+            },
+            "enforced_for": { 
+                "@@assign": [
+                    "ec2:elastic-ip"
+                ]
+            }
+        },
+        "Color": {
+            "tag_key": {
+                "@@operators_allowed_for_child_policies": [
+                    "@@none"
+                ],
+                "@@assign": "Color"
+            },
+            "tag_value": {
+                "@@operators_allowed_for_child_policies": [
+                    "@@none"
+                ],
+                "@@assign": []
+            }
+        }
+    }
+}

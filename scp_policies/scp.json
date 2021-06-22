@@ -1,0 +1,33 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "DenyRunInstanceWithNoProjectTag",
+            "Effect": "Deny",
+            "Action": "ec2:RunInstances",
+            "Resource": [
+                "arn:aws:ec2:*:*:instance/*",
+                "arn:aws:ec2:*:*:volume/*"
+            ],
+            "Condition": {
+                "Null": {
+                    "aws:RequestTag/Project": "true"
+                }
+            }
+        },
+        {
+            "Sid": "DenyRunInstanceWithNoCostCenterTag",
+            "Effect": "Deny",
+            "Action": "ec2:RunInstances",
+            "Resource": [
+                "arn:aws:ec2:*:*:instance/*",
+                "arn:aws:ec2:*:*:volume/*"
+            ],
+            "Condition": {
+                "Null": {
+                    "aws:RequestTag/CostCenter": "true"
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,48 @@
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "Statement1",
+			"Effect": "Deny",
+			"Action": [
+				"ec2:RunInstances"
+			],
+			"Resource": [
+				"*"
+			],
+			"Condition": {
+				"StringLike": {
+					"ec2:InstanceType": [
+						"m1.*",
+						"t1.*",
+						"c1.*",
+						"i2.*",
+						"m2.*",
+						"hs1.*",
+						"g2.*"
+					]
+				}
+			}
+		},
+		{
+			"Sid": "Statement2",
+			"Effect": "Deny",
+			"Action": [
+			"rds:CreateDBCluster",
+            "rds:CreateDBInstance"
+			],
+			"Resource": [
+				"*"
+			],
+			"Condition": {
+				"StringLike": {
+					"rds:DatabaseClass": [
+						"db.m3.*",
+						"db.r3.*",
+						"db.m1.*"
+					]
+				}
+			}
+		}
+	]
+}
