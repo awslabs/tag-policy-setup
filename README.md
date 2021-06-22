@@ -91,7 +91,7 @@ Applicaion, Env, Buisness Unit
 http://s3.amazonaws.com/aws-configservice-us-east-1/cloudformation-templates-for-managed-rules/REQUIRED_TAGS.template
 
 AWS CLI to deploy cf 
-aws cloudformation create-stack --stack-name ConfigTagRule --template-body file://config_rule.json --region eu-west-1 --capabilities CAPABILITY_NAMED_IAM
+```aws cloudformation create-stack --stack-name ConfigTagRule --template-body file://config_rule.json --region eu-west-1 --capabilities CAPABILITY_NAMED_IAM```
 
 *reource_tagging*
 
